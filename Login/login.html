@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>SavHome</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,400i,700,700i" rel="stylesheet">
+    <!-- Personal CSS -->
+    <link rel="stylesheet" href="../assets/style.css" type="text/css"/>
+  </head>
+
+  <body>
+    <header>
+      <div class="container">
+        <div class="logo col-md-2 col-sm-4 col-xs-2">
+          <a href="login.html"><img src="../assets/header/logo.png"></img></a>
+        </div>
+        <!--Later individual icon will go here, which we will dynamicall change in javascript-->
+      </div>
+    </header>
+
+    <div class="center">
+      <div class="login-logo">
+        <a href="login.html"><img src="../assets/login.png"></img></a>
+      </div>
+
+      <h3>Login</h3>
+      <div class="login-form">
+        <input id="txtEmail" type="email" name="Username" placeholder="Email">
+        <br><br>
+        <input id="txtPassword" type="password" name="Password" placeholder="Password">
+        <button id="btnLogin" class="sampletxt">Login</button>
+        <!-- GOOGLE AUTH -->
+        <!-- <button id="btnLogin" class="sampletxt" onclick="googleLogin()">Login with Google</button> -->
+      </div>
+
+      <p><a href="#">Forget your password?</a></p>
+      <p>Don't have an account? <a href="Account-Creation/new-account.html">Make One!</a></p>
+    </div>
+
+    <!-- Script Inclusions -->
+    <script type="text/javascript" src="auth.js"></script>
+    <script>
+    // window.onload=login(); // email and password login
+    </script>
+  </body>
+</html>
