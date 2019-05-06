@@ -1,12 +1,71 @@
+<!--
+All forms of employees will be able to make their account at this page.
+Those that are not in a managerial position will be given different set of
+accsess.
+-->
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Savaria | Create an Account!</title>
+    <title>Creat an Account with Savaria</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Personal CSS -->
+    <link rel="stylesheet" href="../assets/style.css" type="text/css"/>
   </head>
   <body>
+    <header>
+      <div class="container">
+        <div class="logo col-md-2 col-sm-4 col-xs-2">
+          <a href="../Login/login.html"><img src="../assets/header/logo.png"></img></a>
+        </div>
+        <!--Later individual icon will go here, which we will dynamicall change in javascript-->
+      </div>
+    </header>
+    <br><br>
 
-    <h1>account page</h1>
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-md-6 mx-auto">
+          <h1>Make a New Account!</h1>
+          <form>
+            <div class="form-group">
+              <label>First and Last Name</label>
+              <input type="text" class="form-control" id="name" placeholder="Name">
+              <div class="invalid-feedback">
+                Name must be between 2 and 10 characters
+              </div>
+            </div>
+            <div class="form-check mb-4">
+              <input type="checkbox" class="form-check-input" id="manager-check">
+              <label class="form-check-label">I hold a managerial position at Savaria</label>
+            </div>
+            <div class="form-group">
+              <label>Savaria or Google Email address</label>
+              <input type="text" class="form-control" id="InputEmail" aria-describedby="emailHelp" placeholder="Enter email">
+              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+              <div class="invalid-feedback">
+                Enter a valid email
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Password</label>
+              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+              <div class="invalid-feedback">
+                Pasword must be between 2 and 10 characters
+              </div>
+            </div>
+            <button type="submit" class="btn btn-outline-success">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
 
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <!-- <script src="app.js"></script> -->
   </body>
 </html>
