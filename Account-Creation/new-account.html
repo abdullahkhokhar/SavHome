@@ -12,6 +12,14 @@ accsess.
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!-- Personal CSS -->
     <link rel="stylesheet" href="../assets/style.css" type="text/css"/>
+    <style>
+      .error {
+        color: white;
+        padding: 5px;
+        margin: 5px 0 15px 0;
+        background: red;
+      }
+    </style>
   </head>
   <body>
     <header>
@@ -22,13 +30,13 @@ accsess.
         <!--Later individual icon will go here, which we will dynamicall change in javascript-->
       </div>
     </header>
-    <br><br>
+    <br><br><br><br><br>
 
     <div class="container mt-5">
       <div class="row">
         <div class="col-md-6 mx-auto">
           <h1>Make a New Account!</h1>
-          <form>
+          <form id = "reg-form">
             <div class="form-group">
               <label>First and Last Name</label>
               <input type="text" class="form-control" id="name" placeholder="Name">
@@ -37,7 +45,7 @@ accsess.
               </div>
             </div>
             <div class="form-check mb-4">
-              <input type="checkbox" class="form-check-input" id="manager-check">
+              <input type="checkbox" class="form-check-input" id="managerCheck">
               <label class="form-check-label">I hold a managerial position at Savaria</label>
             </div>
             <div class="form-group">

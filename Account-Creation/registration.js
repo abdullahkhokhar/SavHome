@@ -5,6 +5,40 @@ document.getElementById('InputPassword').addEventListener('blur', validatePass);
 // check for the submit button
 document.getElementById('submitBtn').addEventListener('click', checkSubmit);
 
+function checkSubmit(e){
+  e.preventDefault()
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('InputEmail').value;
+  const pass = document.getElementById('InputPassword').value;
+
+  if(name == '' || email == '' || pass == ''){
+    // GIVE AN ALERT
+    const div = document.createElement('div');
+    div.className = "alert error";
+    div.appendChild(document.createTextNode('Please fill out all required fields!'));
+    const container = document.querySelector('.container');
+    const form = document.querySelector('.hello');
+
+    container.insertBefore(div, form);
+    setTimeout(function(){
+      document.querySelector('.alert').remove();
+    }, 5000);
+  }
+  else{
+    // everything is filled out, go to next page depending on if manager or not
+    // check if the radio button has been clicked
+    var checkBox = document.getElementById("managerCheck");
+    if(checkBox.checked == true){
+      // go to manager page
+      window.location.href = "./managerReg.html";
+    }
+    else{
+      // go to employee page
+      window.location.href = "./EmployeeReg.html";
+    }
+  }
+}
+
 function validateName() {
   const name = document.getElementById('name');
   const nameExpr = /^[a-zA-Z]{2,10}$/;
@@ -28,12 +62,12 @@ function validateEmail() {
 }
 
 function validatePass() {
-  const name = document.getElementById('InputPassword');
+  const pass = document.getElementById('InputPassword');
   const passExpr = /^[a-zA-Z\d]{2,10}$/;
 
-  if(!passExpr.test(name.value)){
-    name.classList.add('is-invalid');
+  if(!passExpr.test(pass.value)){
+    pass.classList.add('is-invalid');
   } else {
-    name.classList.remove('is-invalid');
+    pass.classList.remove('is-invalid');
   }
 }
