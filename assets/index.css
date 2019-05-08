@@ -44,6 +44,11 @@
   border: #ededed 2px solid;
   color: #bdbdbd;
   border-radius: 15px;
+  outline: none;
+}
+
+.center .login-form #gLogin{
+  outline: none;
 }
 
 .center .login-form #btnLogin:hover{
