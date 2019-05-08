@@ -1,6 +1,8 @@
+//Intializes Firebase Storage
+var storage = firebase.storage();
+
 // Form Blur Event Listeners --> When we step away, blur occurs.
 document.getElementById('name').addEventListener('blur', validateName);
-// document.getElementById('InputEmail').addEventListener('blur', validateEmail);
 document.getElementById('InputPassword').addEventListener('blur', validatePass);
 document.getElementById('userName').addEventListener('blur', validateUsername);
 // check for the submit button
@@ -20,10 +22,11 @@ function validateUsername(){
 function checkSubmit(e){
   e.preventDefault()
   const name = document.getElementById('name').value;
-  const email = document.getElementById('InputEmail').value;
   const pass = document.getElementById('InputPassword').value;
+  const user = document.getElementById('userName').value;
 
-  if(name == '' || email == '' || pass == ''){
+
+  if(name == '' || user == '' || pass == ''){
     // GIVE AN ALERT
     const div = document.createElement('div');
     div.className = "alert error";
@@ -39,21 +42,13 @@ function checkSubmit(e){
   else{
     // everything is filled out, go to next page depending on if manager or not
     // check if the radio button has been clicked
-    var checkBox = document.getElementById("managerCheck");
-    if(checkBox.checked == true){
-      // go to employee page
-      window.location.href = "./EmployeeReg.html";
-    }
-    else{
-      // go to manager page
-      window.location.href = "./managerReg.html";
-    }
+    signUp();
   }
 }
 
 function validateName() {
   const name = document.getElementById('name');
-  const nameExpr = /^([a-zA-Z]{2,20} [a-zA-Z]{2,20})$/;
+  const nameExpr = /^([a-zA-Z]{2,20} [a-zA-Z]{1,20})$/;
 
   if(!nameExpr.test(name.value)){
     name.classList.add('is-invalid');
@@ -61,17 +56,6 @@ function validateName() {
     name.classList.remove('is-invalid');
   }
 }
-
-// function validateEmail() {
-//   const email = document.getElementById('InputEmail');
-//   const emailExpr = /^([a-zA-Z0-9_\-\.]+)@savaria.com$/;    // need to include gmail
-//
-//   if(!emailExpr.test(email.value)){
-//     email.classList.add('is-invalid');
-//   } else {
-//     email.classList.remove('is-invalid');
-//   }
-// }
 
 function validatePass() {
   const pass = document.getElementById('InputPassword');
@@ -82,4 +66,49 @@ function validatePass() {
   } else {
     pass.classList.remove('is-invalid');
   }
+}
+
+/*-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-
+  CREATE USER WITH USERNAME AND PASS
+-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-*/
+
+function signUp() {
+  //Get elements
+  const name = document.getElementById('name').value;
+  const user = document.getElementById('userName').value;
+  const pass = document.getElementById('InputPassword').value;
+  const auth = firebase.auth();
+  // SignUp with the user and pass
+  const promise = auth.createUserWithEmailAndPassword(user+'@savaria.com', pass);
+  promise.catch(e => window.alert(e.message));
+  signUptimeout();
+}
+
+// Signup Timer
+function signUptimeout() {
+  var timer = setTimeout(confirmedSignUp, 1000);
+}
+
+function confirmedSignUp(){
+  // will create an observable to see when the state of the current user changes
+  firebase.auth().onAuthStateChanged(firebaseUser =>{
+  if(firebaseUser) {
+    var checkBox = document.getElementById("managerCheck");
+    if(checkBox.checked == true){
+      signUp();
+      // go to employee page
+      window.open("/EmployeeReg.html", "_self");
+      //window.location.href = "./EmployeeReg.html";
+    }
+    else{
+      signUp();
+      // go to manager page
+      window.open("./managerReg.html", "_self");
+      //window.location.href = "./managerReg.html";
+    }
+  } else {
+    //Error Alert
+    window.alert('Error, Sign Up Not Successful. Try Again.');
+  }
+  });
 }

@@ -76,6 +76,29 @@ accsess.
       </div>
     </div>
 
+    <!-- Script Inclusions -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+      <script src="https://www.gstatic.com/firebasejs/6.0.0/firebase-app.js"></script>
+      <!-- Add Firebase products that you want to use -->
+      <script src="https://www.gstatic.com/firebasejs/6.0.0/firebase-auth.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/6.0.0/firebase-firestore.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/6.0.1/firebase-storage.js"></script>
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyBJveqIrB6z9o4lF2cWMNH1uT9fUGLXVQo",
+        authDomain: "sav-home.firebaseapp.com",
+        databaseURL: "https://sav-home.firebaseio.com",
+        projectId: "sav-home",
+        storageBucket: "sav-home.appspot.com",
+        messagingSenderId: "837512468886",
+        appId: "1:837512468886:web:cb8e05b77a6e5377"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+    </script>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
