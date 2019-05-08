@@ -30,7 +30,7 @@ accsess.
         <!--Later individual icon will go here, which we will dynamicall change in javascript-->
       </div>
     </header>
-    <br><br><br><br><br>
+    <br><br><br><br>
 
     <div class="container mt-5">
       <div class="row">
@@ -41,21 +41,28 @@ accsess.
               <label>First and Last Name</label>
               <input type="text" class="form-control" id="name" placeholder="Name">
               <div class="invalid-feedback">
-                Name must be between 2 and 25 characters
+                First name and Last name must be between 2 and 25 characters and seperated by a space
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Enter a Username</label>
+              <input type="text" class="form-control" id="userName" placeholder="User Name">
+              <div class="invalid-feedback">
+                Username must be between 2 and 10 alpha-characters with NO spacing
               </div>
             </div>
             <div class="form-check mb-4">
               <input type="checkbox" class="form-check-input" id="managerCheck">
               <label class="form-check-label">I hold a managerial position at Savaria</label>
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
               <label>Savaria or Google Email address</label>
               <input type="text" class="form-control" id="InputEmail" aria-describedby="emailHelp" placeholder="Enter email">
               <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
               <div class="invalid-feedback">
                 Enter a valid email
               </div>
-            </div>
+            </div> -->
             <div class="form-group">
               <label>Password</label>
               <input type="password" class="form-control" id="InputPassword" placeholder="Password">
