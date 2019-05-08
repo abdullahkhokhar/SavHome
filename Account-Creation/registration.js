@@ -29,19 +29,19 @@ function checkSubmit(e){
     // check if the radio button has been clicked
     var checkBox = document.getElementById("managerCheck");
     if(checkBox.checked == true){
-      // go to manager page
-      window.location.href = "./managerReg.html";
-    }
-    else{
       // go to employee page
       window.location.href = "./EmployeeReg.html";
+    }
+    else{
+      // go to manager page
+      window.location.href = "./managerReg.html";
     }
   }
 }
 
 function validateName() {
   const name = document.getElementById('name');
-  const nameExpr = /^[a-zA-Z]{2,10}$/;
+  const nameExpr = /^[a-zA-Z]{2,25}$/;
 
   if(!nameExpr.test(name.value)){
     name.classList.add('is-invalid');
