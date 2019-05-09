@@ -41,7 +41,6 @@ function checkSubmit(e){
   }
   else{
     // everything is filled out, go to next page depending on if manager or not
-    // check if the radio button has been clicked
     signUp();
   }
 }
@@ -59,7 +58,7 @@ function validateName() {
 
 function validatePass() {
   const pass = document.getElementById('InputPassword');
-  const passExpr = /^[a-zA-Z\d]{2,10}$/;
+  const passExpr = /^[a-zA-Z\d]{2,20}$/;
 
   if(!passExpr.test(pass.value)){
     pass.classList.add('is-invalid');
@@ -89,26 +88,74 @@ function signUptimeout() {
   var timer = setTimeout(confirmedSignUp, 1000);
 }
 
+// Get the currently signed-in user
 function confirmedSignUp(){
   // will create an observable to see when the state of the current user changes
   firebase.auth().onAuthStateChanged(firebaseUser =>{
   if(firebaseUser) {
+    // check if the radio button has been clicked
     var checkBox = document.getElementById("managerCheck");
     if(checkBox.checked == true){
-      signUp();
-      // go to employee page
-      window.open("/EmployeeReg.html", "_self");
-      //window.location.href = "./EmployeeReg.html";
+      // Create a Manager -- redirect after user created
+      createEmployee();
     }
     else{
-      signUp();
-      // go to manager page
-      window.open("./managerReg.html", "_self");
-      //window.location.href = "./managerReg.html";
+      // Create an Employee -- redirect after employee created
+      createManager();
     }
   } else {
     //Error Alert
     window.alert('Error, Sign Up Not Successful. Try Again.');
   }
+  });
+}
+
+/*-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-
+        ACCOUNT CREATION
+-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-*/
+
+// Create an Employee
+function createEmployee(){
+  var user = firebase.auth().currentUser;
+  var id = user.uid;
+  // want to store Full Name, Username, Manager Status, Activity Log
+  var fullName = document.getElementById('name');
+  var userName = document.getElementById('userName');
+
+  //Firebase Update Profile
+  user.updateProfile({
+    fullName: fullName,
+    userName: userName,
+    manager: false,
+    activityLog: null,
+  }).then(function() {
+    // Creation Successful
+    // Page Relocation
+    window.location.href = "./EmployeeReg.html";
+  }, function(error) {
+    // An error happened.
+  });
+}
+
+// Create a Manager
+function createManager(){
+  var user = firebase.auth().currentUser;
+  var id = user.uid;
+  // want to store Full Name, Username, Manager Status, Activity Log
+  var fullName = document.getElementById('name');
+  var userName = document.getElementById('userName');
+
+  //Firebase Update Profile
+  user.updateProfile({
+    fullName: fullName,
+    userName: userName,
+    manager: true,
+    activityLog: null,
+  }).then(function() {
+    // Creation Successful
+    // Page Relocation
+    window.location.href = "./managerReg.html";
+  }, function(error) {
+    // An error happened.
   });
 }
