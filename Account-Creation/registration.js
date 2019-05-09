@@ -1,11 +1,7 @@
-//Intializes Firebase Storage
-var storage = firebase.storage();
-
 // Form Blur Event Listeners --> When we step away, blur occurs.
 document.getElementById('name').addEventListener('blur', validateName);
 document.getElementById('InputPassword').addEventListener('blur', validatePass);
 document.getElementById('userName').addEventListener('blur', validateUsername);
-// check for the submit button
 document.getElementById('submitBtn').addEventListener('click', checkSubmit);
 
 function validateUsername(){
@@ -16,6 +12,28 @@ function validateUsername(){
     username.classList.add('is-invalid');
   } else {
     username.classList.remove('is-invalid');
+  }
+}
+
+function validateName() {
+  const name = document.getElementById('name');
+  const nameExpr = /^([a-zA-Z]{2,20} [a-zA-Z]{1,20})$/;
+
+  if(!nameExpr.test(name.value)){
+    name.classList.add('is-invalid');
+  } else {
+    name.classList.remove('is-invalid');
+  }
+}
+
+function validatePass() {
+  const pass = document.getElementById('InputPassword');
+  const passExpr = /^[a-zA-Z\d]{2,20}$/;
+
+  if(!passExpr.test(pass.value)){
+    pass.classList.add('is-invalid');
+  } else {
+    pass.classList.remove('is-invalid');
   }
 }
 
@@ -42,28 +60,6 @@ function checkSubmit(e){
   else{
     // everything is filled out, go to next page depending on if manager or not
     signUp();
-  }
-}
-
-function validateName() {
-  const name = document.getElementById('name');
-  const nameExpr = /^([a-zA-Z]{2,20} [a-zA-Z]{1,20})$/;
-
-  if(!nameExpr.test(name.value)){
-    name.classList.add('is-invalid');
-  } else {
-    name.classList.remove('is-invalid');
-  }
-}
-
-function validatePass() {
-  const pass = document.getElementById('InputPassword');
-  const passExpr = /^[a-zA-Z\d]{2,20}$/;
-
-  if(!passExpr.test(pass.value)){
-    pass.classList.add('is-invalid');
-  } else {
-    pass.classList.remove('is-invalid');
   }
 }
 
@@ -105,7 +101,7 @@ function confirmedSignUp(){
     }
   } else {
     //Error Alert
-    window.alert('Error, Sign Up Not Successful. Try Again.');
+  //  window.alert('Error, Sign Up Not Successful. Try Again.');
   }
   });
 }
@@ -116,40 +112,34 @@ function confirmedSignUp(){
 
 // Create an Employee
 function createEmployee(){
-  var user = firebase.auth().currentUser;
-  var id = user.uid;
-  console.log(id);
   // want to store Full Name, Username, Manager Status, Activity Log
   var fullName = document.getElementById('name');
   var userName = document.getElementById('userName');
+  var empRef = firebase.database().ref('Employees'); // reference to our collection
 
-  firebase.database().ref('users/' + id).set({
-    fullName: fullName,
-    userName: userName,
+  // save to firebase database
+  empRef.child(userName.value).set({
+    fullName: fullName.value,
     manager: false,
+  })
+  .then(function(){
+    window.open("./EmployeeReg.html", "_self");
   });
-  window.location.href = "./EmployeeReg.html";
 }
 
 // Create a Manager
 function createManager(){
-  var user = firebase.auth().currentUser;
-  var id = user.uid;
   // want to store Full Name, Username, Manager Status, Activity Log
   var fullName = document.getElementById('name');
   var userName = document.getElementById('userName');
+  var empRef = firebase.database().ref('Employees'); // reference to our collection
 
-  //Firebase Update Profile
-  user.updateProfile({
-    fullName: fullName,
-    userName: userName,
+  // save to firebase database
+  empRef.child(userName.value).set({
+    fullName: fullName.value,
     manager: true,
-    activityLog: null,
-  }).then(function() {
-    // Creation Successful
-    // Page Relocation
-    window.location.href = "./managerReg.html";
-  }, function(error) {
-    // An error happened.
+  })
+  .then(function(){
+    window.open("./managerReg.html", "_self");
   });
 }

@@ -1,2 +1,12 @@
 @import 'header/header.css';
 @import 'index.css';
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700');
+* {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+}
+
+.nav{
+  display:none;
+}
