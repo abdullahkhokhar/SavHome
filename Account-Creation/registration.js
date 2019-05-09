@@ -97,11 +97,11 @@ function confirmedSignUp(){
     var checkBox = document.getElementById("managerCheck");
     if(checkBox.checked == true){
       // Create a Manager -- redirect after user created
-      createEmployee();
+      createManager();
     }
     else{
       // Create an Employee -- redirect after employee created
-      createManager();
+      createEmployee();
     }
   } else {
     //Error Alert
@@ -118,23 +118,17 @@ function confirmedSignUp(){
 function createEmployee(){
   var user = firebase.auth().currentUser;
   var id = user.uid;
+  console.log(id);
   // want to store Full Name, Username, Manager Status, Activity Log
   var fullName = document.getElementById('name');
   var userName = document.getElementById('userName');
 
-  //Firebase Update Profile
-  user.updateProfile({
+  firebase.database().ref('users/' + id).set({
     fullName: fullName,
     userName: userName,
     manager: false,
-    activityLog: null,
-  }).then(function() {
-    // Creation Successful
-    // Page Relocation
-    window.location.href = "./EmployeeReg.html";
-  }, function(error) {
-    // An error happened.
   });
+  window.location.href = "./EmployeeReg.html";
 }
 
 // Create a Manager
