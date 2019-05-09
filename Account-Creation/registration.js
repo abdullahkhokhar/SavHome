@@ -123,10 +123,10 @@ function createEmployee(){
   var fullName = document.getElementById('name');
   var userName = document.getElementById('userName');
 
-  firebase.database().ref('users/' + id + "/").set({
+  firebase.database().ref('Users/' + id).set({
     fullName: fullName,
-    userName: userName,
     manager: false,
+    userName: userName,
   });
   window.location.href = "./EmployeeReg.html";
 }
