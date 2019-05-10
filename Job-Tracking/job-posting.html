@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Assign a Job!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css"/>
+    <link rel="stylesheet" href="../assets/style.css" type="text/css"/>
+    <link rel="stylesheet" href="/posting.css">
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="logo col-md-2 col-sm-4 col-xs-2">
+          <a href="login.html"><img src="../assets/header/logo.png"></img></a>
+        </div>
+        <!--Later individual icon will go here, which we will dynamicall change in javascript-->
+      </div>
+    </header>
+    <br><br><br><br>
+    <div class="container">
+      <h3>Assign a Job</h3>
+      <form id="job-form">
+        <div>
+          <label for="Section of Operation">Section of Operation</label>
+          <input type="text" id="title" class="u-full-width">
+        </div>
+        <div>
+          <label for="Employee Name">Employee Name</label>
+          <input type="text" id="employee" class="u-full-width">
+        </div>
+        <div>
+          <label for="Job Number">Job Number</label>
+          <input type="text" id="job-number" class="u-full-width">
+        </div>
+        <div>
+          <input type="submit" value="Submit" class="u-full-width">
+        </div>
+      </form>
+
+      <h3>Currently Active Job</h3>
+      <table class="u-full-width">
+        <thead> <!-- table head -->
+          <tr class="u-full-width"> <!-- table row -->
+            <th>Section of Operation</th>
+            <th>Employee Name</th>
+            <th>Job Number</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id = "job-list">
+          <!-- Will read from the database and put here -->
+          <!-- If X mark clicked, then remove  from the  database -->
+          
+        </tbody>
+      </table>
+    </div>
+    <script src="app-es6.js"></script>
+  </body>
+</html>
