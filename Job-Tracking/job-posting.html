@@ -5,11 +5,10 @@
     <title>Assign a Job!</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css"/>
     <link rel="stylesheet" href="../assets/style.css" type="text/css"/>
-    <link rel="stylesheet" href="/posting.css">
   </head>
   <body>
     <header>
-      <div class="container">
+      <div class="container2">
         <div class="logo col-md-2 col-sm-4 col-xs-2">
           <a href="login.html"><img src="../assets/header/logo.png"></img></a>
         </div>
@@ -50,10 +49,38 @@
         <tbody id = "job-list">
           <!-- Will read from the database and put here -->
           <!-- If X mark clicked, then remove  from the  database -->
-          
+
         </tbody>
       </table>
     </div>
-    <script src="app-es6.js"></script>
+
+
+
+
+
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.0.1/firebase-database.js"></script>
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyBJveqIrB6z9o4lF2cWMNH1uT9fUGLXVQo",
+        authDomain: "sav-home.firebaseapp.com",
+        databaseURL: "https://sav-home.firebaseio.com",
+        projectId: "sav-home",
+        storageBucket: "sav-home.appspot.com",
+        messagingSenderId: "837512468886",
+        appId: "1:837512468886:web:cb8e05b77a6e5377"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+    </script>
+
+    <script src="ex.js"></script>
+    <script>
+    //window.onload = readJobFromDB();
+    </script>
   </body>
 </html>

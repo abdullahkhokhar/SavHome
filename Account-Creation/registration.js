@@ -125,6 +125,7 @@ function createEmployee(){
   .then(function(){
     window.open("./EmployeeReg.html", "_self");
   });
+
 }
 
 // Create a Manager
