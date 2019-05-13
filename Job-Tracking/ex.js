@@ -1,5 +1,8 @@
 function readFromDB(){
-  // you want to call this everytime the page is reloaded 
+  // you want to call this everytime the page is reloaded
+  // read from database and for each item read make a new table row to insert
+
+  // TOMORROW
 }
 
 class Job {
@@ -27,6 +30,10 @@ class UI {
       // CHECK IF JOB NUMBER LIMIT CROSSED
       if(keys.length == 10){
         ui.showAlert(`Job limit exceeded for ${job.author}, Please delete a previous job`, 'error')
+        return;
+      }
+      if(keys.includes(job.jobNum)){
+        ui.showAlert('Job Already Assigned!', 'error');
         return;
       }
 
@@ -68,8 +75,15 @@ class UI {
   }
 
   deleteJob(target) {
-    // we want to delete also from the database the jobnumber from the employee
-    // if you deleted the last job for the employee [], delete the employee as well
+    // remove a job for an employee from DB
+    // if the employee has no more jobs left then remove the employee as well
+    const nodeLis = target.parentElement.parentElement.childNodes;
+    const department = nodeLis[1].textContent;
+    const name = nodeLis[3].textContent;
+    const jobNumber = nodeLis[5].textContent
+
+    // get the reference to the DB 
+
     if(target.className === 'delete'){
       target.parentElement.parentElement.remove();
     }
@@ -113,7 +127,6 @@ document.getElementById('job-list').addEventListener('click', function(e){
   const ui = new UI();
 
   ui.deleteJob(e.target);
-
   // show an alert
   ui.showAlert('Job sucsessfully removed!', 'success');
 
