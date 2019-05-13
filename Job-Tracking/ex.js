@@ -8,16 +8,24 @@ class Job {
 
 class UI {
   addJobToList(job) {
-    const list = document.getElementById('job-list');
-    // create a tr element
-    const row = document.createElement('tr');
-    row.innerHTML = `
-    <td>${job.title}</td>
-    <td>${job.author}</td>
-    <td>${job.jobNum}</td>
-    <td><a href ="#" class = "delete">X<a></td>
-    `;
-    list.appendChild(row);
+    // ADD THE JOB TO DATABASE
+
+    var depRef = firebase.database().ref(job.title);
+    depRef.child(job.author).set({
+      job_numbers:job.jobNum,
+    })
+    .then(function(){
+      const list = document.getElementById('job-list');
+      // create a tr element
+      const row = document.createElement('tr');
+      row.innerHTML = `
+      <td>${job.title}</td>
+      <td>${job.author}</td>
+      <td>${job.jobNum}</td>
+      <td><a href ="#" class = "delete">X<a></td>
+      `;
+      list.appendChild(row);
+    });
   }
 
   showAlert(msg, className) {
@@ -37,6 +45,8 @@ class UI {
   }
 
   deleteJob(target) {
+    // we want to delete also from the database the jobnumber from the employee
+    // if you deleted the last job for the employee [], delete the employee as well
     if(target.className === 'delete'){
       target.parentElement.parentElement.remove();
     }
