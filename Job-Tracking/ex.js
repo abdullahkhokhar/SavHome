@@ -1,9 +1,5 @@
 function readFromDB(){
-  // FOR each of the names then FOR each of their job numbers ...
-  // const dbRef = firebase.database().ref().child('Department');
-  // const dbRefName = dbRef.child('Bob the Builder');
-  //
-  // dbRefName.on("child_added", snap => console.log(snap.val()));
+  // you want to call this everytime the page is reloaded 
 }
 
 class Job {
@@ -17,6 +13,7 @@ class Job {
 class UI {
   addJobToList(job) {
     const list = document.getElementById('job-list');
+    const ui = new UI();
     var keys = [];
     // read the array then update
     const dbRef = firebase.database().ref().child(job.title).child(job.author).child('job_numbers');
@@ -26,8 +23,14 @@ class UI {
         var itemVal = item.val();
         keys.push(itemVal);
       });
-      keys.push(job.jobNum);
 
+      // CHECK IF JOB NUMBER LIMIT CROSSED
+      if(keys.length == 10){
+        ui.showAlert(`Job limit exceeded for ${job.author}, Please delete a previous job`, 'error')
+        return;
+      }
+
+      keys.push(job.jobNum); // append the new job number
       // Update the keys including the new one
       var depRef = firebase.database().ref(job.title);
       depRef.child(job.author).set({
@@ -43,7 +46,7 @@ class UI {
         <td><a href ="#" class = "delete">X<a></td>
         `;
         list.appendChild(row);
-
+        ui.showAlert('Job Added to be Tracked!', 'success')
       });
     });
   }
@@ -61,7 +64,7 @@ class UI {
 
     setTimeout(function(){
       document.querySelector('.alert').remove();
-    }, 3000);
+    }, 5000);
   }
 
   deleteJob(target) {
@@ -99,7 +102,6 @@ document.getElementById('job-form').addEventListener('submit', function(e){
     // add the job to list
     ui.addJobToList(new_job);
     // show showAlert
-    ui.showAlert('Job Added to be Tracked!', 'success')
     ui.clearFields();
   }
   e.preventDefault();
