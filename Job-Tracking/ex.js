@@ -16,6 +16,7 @@ class Job {
 
 class UI {
   addJobToList(job) {
+    const list = document.getElementById('job-list');
     var keys = [];
     // read the array then update
     const dbRef = firebase.database().ref().child(job.title).child(job.author).child('job_numbers');
@@ -25,18 +26,25 @@ class UI {
         var itemVal = item.val();
         keys.push(itemVal);
       });
-    });
-    keys.push(job.jobNum);
+      keys.push(job.jobNum);
 
+      // Update the keys including the new one
+      var depRef = firebase.database().ref(job.title);
+      depRef.child(job.author).set({
+        job_numbers:keys,
+      })
+      .then(function(){
+        // Create a new Table Row
+        const row = document.createElement('tr');
+        row.innerHTML = `
+        <td>${job.title}</td>
+        <td>${job.author}</td>
+        <td>${job.jobNum}</td>
+        <td><a href ="#" class = "delete">X<a></td>
+        `;
+        list.appendChild(row);
 
-
-    var depRef = firebase.database().ref(job.title);
-    depRef.child(job.author).set({
-      job_numbers:keys,
-    })
-    .then(function(){
-      //dbRefName.on("child_added", snap => console.log(snap.val()));
-      console.log('yay');
+      });
     });
   }
 
