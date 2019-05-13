@@ -1,3 +1,11 @@
+function readFromDB(){
+  // FOR each of the names then FOR each of their job numbers ...
+  // const dbRef = firebase.database().ref().child('Department');
+  // const dbRefName = dbRef.child('Bob the Builder');
+  //
+  // dbRefName.on("child_added", snap => console.log(snap.val()));
+}
+
 class Job {
   constructor(title, author, jobNum){
     this.title = title;
@@ -8,23 +16,27 @@ class Job {
 
 class UI {
   addJobToList(job) {
-    // ADD THE JOB TO DATABASE
+    var keys = [];
+    // read the array then update
+    const dbRef = firebase.database().ref().child(job.title).child(job.author).child('job_numbers');
+    // Now we have the reference to the jobs array of the individual
+    dbRef.once('value', function(snap){
+      snap.forEach(function(item){
+        var itemVal = item.val();
+        keys.push(itemVal);
+      });
+    });
+    keys.push(job.jobNum);
+
+
 
     var depRef = firebase.database().ref(job.title);
     depRef.child(job.author).set({
-      job_numbers:job.jobNum,
+      job_numbers:keys,
     })
     .then(function(){
-      const list = document.getElementById('job-list');
-      // create a tr element
-      const row = document.createElement('tr');
-      row.innerHTML = `
-      <td>${job.title}</td>
-      <td>${job.author}</td>
-      <td>${job.jobNum}</td>
-      <td><a href ="#" class = "delete">X<a></td>
-      `;
-      list.appendChild(row);
+      //dbRefName.on("child_added", snap => console.log(snap.val()));
+      console.log('yay');
     });
   }
 
