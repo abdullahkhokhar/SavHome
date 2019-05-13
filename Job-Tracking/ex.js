@@ -1,7 +1,6 @@
 function readFromDB(){
   // you want to call this everytime the page is reloaded
   // read from database and for each item read make a new table row to insert
-
   // TOMORROW
 }
 
@@ -82,7 +81,7 @@ class UI {
     const name = nodeLis[3].textContent;
     const jobNumber = nodeLis[5].textContent
 
-    // get the reference to the DB 
+    // get the reference to the DB
 
     if(target.className === 'delete'){
       target.parentElement.parentElement.remove();
@@ -107,7 +106,6 @@ document.getElementById('job-form').addEventListener('submit', function(e){
 
   // Instantiate a UI object
   const ui = new UI();
-
   // check for empty insertions and provide some change
   if(title === '' || employee === '' || job === ''){
     // error alert
@@ -125,10 +123,10 @@ document.getElementById('job-form').addEventListener('submit', function(e){
 document.getElementById('job-list').addEventListener('click', function(e){
   // Instantiate a UI object
   const ui = new UI();
-
+  // call delete job
   ui.deleteJob(e.target);
   // show an alert
   ui.showAlert('Job sucsessfully removed!', 'success');
-
+  // prevent default behaviour
   e.preventDefault();
 })
