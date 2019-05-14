@@ -1,3 +1,7 @@
+/*
+This javascript file will manage 
+*/
+
 function readFromDB(){
   // you want to call this everytime the page is reloaded
   const list = document.getElementById('job-list');
@@ -123,6 +127,9 @@ class UI {
         keys.push(itemVal);
       });
       // If the array is empty delete the entire employee
+      /*
+      ISSUE HERE WITH WHEN WE DELETE A SINGLE ITEM
+      */
       if(keys.length == 0){
         // THIS IS TO DELETE THE ENTIRE EMPLOYEE
         dbRef = firebase.database().ref().child(department);
@@ -153,7 +160,6 @@ class UI {
       });
     });
   }
-
   clearFields() {
     document.getElementById('title').value = '';
     document.getElementById('employee').value = '';
