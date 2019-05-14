@@ -1,7 +1,29 @@
 function readFromDB(){
   // you want to call this everytime the page is reloaded
+  const list = document.getElementById('job-list');
+  keys = [];
   // read from database and for each item read make a new table row to insert
-  // TOMORROW
+  const dbRef = firebase.database().ref();
+  dbRef.once('value', function(snap){
+    snap.forEach(function(item){
+      var itemVal = item.val();
+      keys.push(itemVal);
+    });
+    for(var i in keys){
+      const obj = keys[i];
+      Object.keys(obj).forEach((name, index) => {
+        // Now I have the name and the
+        const jobNum = obj[name].job_numbers;
+        const department = obj[name].department;
+        //
+
+
+        //console.log(`${name}: ${obj[name].job_numbers}`)
+      })
+    }
+  });
+
+
 }
 
 class Job {
@@ -41,6 +63,7 @@ class UI {
       var depRef = firebase.database().ref(job.title);
       depRef.child(job.author).set({
         job_numbers:keys,
+        department:job.title,
       })
       .then(function(){
         // Create a new Table Row
@@ -79,7 +102,7 @@ class UI {
     const nodeLis = target.parentElement.parentElement.childNodes;
     const department = nodeLis[1].textContent;
     const name = nodeLis[3].textContent;
-    // const jobNumber = nodeLis[5].textContent
+    const jobNumber = nodeLis[5].textContent
     // Reference
     const dbRef = firebase.database().ref().child(department).child(name).child('job_numbers');
     var keys = [];
@@ -104,19 +127,21 @@ class UI {
         return;
       }
       // Remove job number from the array
+      var index = keys.indexOf(jobNumber);
+      keys.splice(index, 1);
 
-      // Write/Update the new array 
-
-
+      // Write/Update the new array
+      var depRef = firebase.database().ref(department);
+      depRef.child(name).set({
+        job_numbers:keys,
+      })
+      .then(function(){
+        // Delete the Table Row
+        if(target.className === 'delete'){
+          target.parentElement.parentElement.remove();
+        }
+      });
     });
-
-
-
-
-
-    if(target.className === 'delete'){
-      target.parentElement.parentElement.remove();
-    }
   }
 
   clearFields() {
