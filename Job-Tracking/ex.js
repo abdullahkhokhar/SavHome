@@ -9,23 +9,27 @@ function readFromDB(){
       var itemVal = item.val();
       keys.push(itemVal);
     });
-    console.log(keys);
     for(var i in keys){
       const obj = keys[i];
       Object.keys(obj).forEach((name, index) => {
         // Now I have the name, department, and job number
-        const jobNum = obj[name].job_numbers;
+        const jobNumArr = obj[name].job_numbers;
         const department = obj[name].department;
+        const jobNumArrLength = (obj[name].job_numbers).length;
+        console.log(jobNumArrLength);
 
-        // Now each time we want to create a new table row element and load the items
-        const row = document.createElement('tr');
-        row.innerHTML = `
-        <td>${department}</td>
-        <td>${name}</td>
-        <td>${department}</td>
-        <td><a href ="#" class = "delete">X<a></td>
-        `;
-        list.appendChild(row);
+        for(var i = 0; i < jobNumArrLength; i++){
+          // Now each time we want to create a new table row element and load the items
+          const row = document.createElement('tr');
+          row.innerHTML = `
+          <td>${department}</td>
+          <td>${name}</td>
+          <td>${jobNumArr[i]}</td>
+          <td><a href ="#" class = "delete">X<a></td>
+          `;
+          list.appendChild(row);
+        }
+
         //console.log(`${name}: ${obj[name].job_numbers}, department: ${obj[name].department}`);
       })
     }
