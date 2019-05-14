@@ -9,21 +9,27 @@ function readFromDB(){
       var itemVal = item.val();
       keys.push(itemVal);
     });
+    console.log(keys);
     for(var i in keys){
       const obj = keys[i];
       Object.keys(obj).forEach((name, index) => {
-        // Now I have the name and the
+        // Now I have the name, department, and job number
         const jobNum = obj[name].job_numbers;
         const department = obj[name].department;
-        //
 
-
-        //console.log(`${name}: ${obj[name].job_numbers}`)
+        // Now each time we want to create a new table row element and load the items
+        const row = document.createElement('tr');
+        row.innerHTML = `
+        <td>${department}</td>
+        <td>${name}</td>
+        <td>${department}</td>
+        <td><a href ="#" class = "delete">X<a></td>
+        `;
+        list.appendChild(row);
+        //console.log(`${name}: ${obj[name].job_numbers}, department: ${obj[name].department}`);
       })
     }
   });
-
-
 }
 
 class Job {
@@ -134,6 +140,7 @@ class UI {
       var depRef = firebase.database().ref(department);
       depRef.child(name).set({
         job_numbers:keys,
+        department: department,
       })
       .then(function(){
         // Delete the Table Row
