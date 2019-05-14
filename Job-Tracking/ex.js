@@ -29,7 +29,6 @@ function readFromDB(){
           `;
           list.appendChild(row);
         }
-
         //console.log(`${name}: ${obj[name].job_numbers}, department: ${obj[name].department}`);
       })
     }
@@ -126,7 +125,7 @@ class UI {
       // If the array is empty delete the entire employee
       if(keys.length == 0){
         // THIS IS TO DELETE THE ENTIRE EMPLOYEE
-        dbRef = firebase.database().ref().child(department).child(name);
+        dbRef = firebase.database().ref().child(department);
         dbRef.remove()
         .then(function(){
           console.log('remove succsessfull!');
