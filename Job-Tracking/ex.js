@@ -79,9 +79,40 @@ class UI {
     const nodeLis = target.parentElement.parentElement.childNodes;
     const department = nodeLis[1].textContent;
     const name = nodeLis[3].textContent;
-    const jobNumber = nodeLis[5].textContent
+    // const jobNumber = nodeLis[5].textContent
+    // Reference
+    const dbRef = firebase.database().ref().child(department).child(name).child('job_numbers');
+    var keys = [];
 
-    // get the reference to the DB
+    // Remove the job number from the array
+    dbRef.once('value', function(snap){
+      snap.forEach(function(item){
+        var itemVal = item.val();
+        keys.push(itemVal);
+      });
+      // If the array is empty delete the entire employee
+      if(keys.length == 0){
+        // THIS IS TO DELETE THE ENTIRE EMPLOYEE
+        dbRef = firebase.database().ref().child(department).child(name);
+        dbRef.remove()
+        .then(function(){
+          console.log('remove succsessfull!');
+        })
+        .catch(function(error) {
+        console.log("Remove failed: " + error.message)
+        });
+        return;
+      }
+      // Remove job number from the array
+
+      // Write/Update the new array 
+
+
+    });
+
+
+
+
 
     if(target.className === 'delete'){
       target.parentElement.parentElement.remove();
