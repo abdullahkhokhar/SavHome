@@ -2,11 +2,28 @@
 This javascript file will manage
 */
 
-// Form Blur Event Listeners --> When we step away, blur occurs.
-// document.getElementById('title').addEventListener('blur', validateDepartment);
-// document.getElementById('employee').addEventListener('blud', validateEmpName);
-//
+// every key up not entering loaded
+function Filter(){
+  var input  = document.getElementById("myInput");
+  var filter = input.value.toUpperCase();
+  var table = document.getElementById("filterTable");
+  var tr = table.getElementsByTagName("tr");
+  var td, textValue;
 
+  // loop through tr and hide ones which do not match query
+  for(var i = 0; i < tr.length; i++){
+    td = tr[i].getElementsByTagName("td")[0];
+    console.log(td);
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
 
 function readFromDB(){
   // you want to call this everytime the page is reloaded

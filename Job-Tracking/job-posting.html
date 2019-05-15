@@ -25,7 +25,7 @@
         </div>
         <div>
           <label for="Employee Name">Employee Name</label>
-          <input type="text" id="employee" class="u-full-width"  pattern = "([A-Z]\w+)(^\s)" placeholder="Please start with a capital letter, and provide ONLY the first name. Ensure spelling is correct.">
+          <input type="text" id="employee" class="u-full-width"  pattern = "^([A-Z][a-z]+)$" placeholder="Please start with a capital letter, and provide ONLY the first name. Ensure spelling is correct.">
         </div>
         <div>
           <label for="Job Number">Job Number</label>
@@ -37,12 +37,18 @@
       </form>
 
       <h3>Currently Active Jobs</h3>
-      <table class="u-full-width">
+      <!-- SOME ISSUE WITH THE CREATION OF TR ELEMENTS  -->
+      <!-- <div>
+        <span>Job Number</span>
+        <input type="number" id = "myInput" onkeyup="Filter()" placeholder="Search for Job Number">
+      </div> -->
+
+      <table id="filterTable" class = "u-full-width">
         <thead> <!-- table head -->
           <tr class="u-full-width"> <!-- table row -->
-            <th>Section of Operation</th>
-            <th>Employee Name</th>
             <th>Job Number</th>
+            <th>Employee Name</th>
+            <th>Department</th>
             <th></th>
           </tr>
         </thead>
