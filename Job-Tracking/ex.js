@@ -2,6 +2,12 @@
 This javascript file will manage
 */
 
+// Form Blur Event Listeners --> When we step away, blur occurs.
+// document.getElementById('title').addEventListener('blur', validateDepartment);
+// document.getElementById('employee').addEventListener('blud', validateEmpName);
+//
+
+
 function readFromDB(){
   // you want to call this everytime the page is reloaded
   const list = document.getElementById('job-list');
