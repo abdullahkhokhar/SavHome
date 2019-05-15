@@ -1,5 +1,5 @@
 /*
-This javascript file will manage 
+This javascript file will manage
 */
 
 function readFromDB(){
@@ -20,7 +20,6 @@ function readFromDB(){
         const jobNumArr = obj[name].job_numbers;
         const department = obj[name].department;
         const jobNumArrLength = (obj[name].job_numbers).length;
-        console.log(jobNumArrLength);
 
         for(var i = 0; i < jobNumArrLength; i++){
           // Now each time we want to create a new table row element and load the items
@@ -127,19 +126,21 @@ class UI {
         keys.push(itemVal);
       });
       // If the array is empty delete the entire employee
-      /*
-      ISSUE HERE WITH WHEN WE DELETE A SINGLE ITEM
-      */
-      if(keys.length == 0){
+      if(keys.length == 1){
         // THIS IS TO DELETE THE ENTIRE EMPLOYEE
-        dbRef = firebase.database().ref().child(department);
-        dbRef.remove()
+        const dbRef2 = firebase.database().ref().child(department).child(name);
+        dbRef2.remove()
         .then(function(){
           console.log('remove succsessfull!');
         })
         .catch(function(error) {
         console.log("Remove failed: " + error.message)
         });
+
+        // remove the item from the page as well
+        if(target.className === 'delete'){
+          target.parentElement.parentElement.remove();
+        }
         return;
       }
       // Remove job number from the array
