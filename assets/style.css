@@ -46,3 +46,16 @@
   border-radius: 10px;
   padding: 5px;
 }
+
+.DEL{
+  font-weight: bold;
+  background-color: #FAACA8;
+  background-image: linear-gradient(19deg, #FAACA8 0%, #DDD6F3 100%);
+  border-radius: 8px;
+}
+
+.DTitle{
+  background-color:#FAACA8;
+  border-radius: 10px;
+  padding: 5px;
+}
