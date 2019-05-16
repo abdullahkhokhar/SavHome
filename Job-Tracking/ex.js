@@ -13,7 +13,6 @@ function Filter(){
   // loop through tr and hide ones which do not match query
   for(var i = 0; i < tr.length; i++){
     td = tr[i].getElementsByTagName("td")[0];
-    console.log(td);
     if (td) {
       txtValue = td.textContent || td.innerText;
       if (txtValue.toUpperCase().indexOf(filter) > -1) {
@@ -48,9 +47,9 @@ function readFromDB(){
           // Now each time we want to create a new table row element and load the items
           const row = document.createElement('tr');
           row.innerHTML = `
-          <td>${department}</td>
-          <td>${name}</td>
           <td>${jobNumArr[i]}</td>
+          <td>${name}</td>
+          <td>${department}</td>
           <td><a href ="#" class = "delete">X<a></td>
           `;
           list.appendChild(row);
@@ -104,9 +103,9 @@ class UI {
         // Create a new Table Row
         const row = document.createElement('tr');
         row.innerHTML = `
-        <td>${job.title}</td>
-        <td>${job.author}</td>
         <td>${job.jobNum}</td>
+        <td>${job.author}</td>
+        <td>${job.title}</td>
         <td><a href ="#" class = "delete">X<a></td>
         `;
         list.appendChild(row);
@@ -135,9 +134,9 @@ class UI {
     // remove a job for an employee from DB
     // if the employee has no more jobs left then remove the employee as well
     const nodeLis = target.parentElement.parentElement.childNodes;
-    const department = nodeLis[1].textContent;
+    const jobNumber = nodeLis[1].textContent;
     const name = nodeLis[3].textContent;
-    const jobNumber = nodeLis[5].textContent
+    const department = nodeLis[5].textContent
     // Reference
     const dbRef = firebase.database().ref().child(department).child(name).child('job_numbers');
     var keys = [];
@@ -154,7 +153,7 @@ class UI {
         const dbRef2 = firebase.database().ref().child(department).child(name);
         dbRef2.remove()
         .then(function(){
-          console.log('remove succsessfull!');
+          console.log('Remove successfull!');
         })
         .catch(function(error) {
         console.log("Remove failed: " + error.message)

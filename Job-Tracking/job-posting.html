@@ -21,27 +21,29 @@
       <form id="job-form">
         <div>
           <label for="Section of Operation">Department of Operation</label>
-          <input type="text" id="title" class="u-full-width" pattern="^(V1504|Enclosures|Doors|)$" placeholder="V1504, Enclosures, Doors">
+          <span>V1504, Enclosures, Doors, Eclipse, Telecab, Orion, Multilift</span>
+          <input type="text" id="title" class="u-full-width" pattern="^(V1504|Enclosures|Doors|Eclipse|Telecab|Orion|Multilift)$">
         </div>
         <div>
           <label for="Employee Name">Employee Name</label>
-          <input type="text" id="employee" class="u-full-width"  pattern = "^([A-Z][a-z]+)$" placeholder="Please start with a capital letter, and provide ONLY the first name. Ensure spelling is correct.">
+          <span>Please start with a capital letter, and provide ONLY the first name. Ensure spelling is correct.</span>
+          <input type="text" id="employee" class="u-full-width"  pattern = "^([A-Z][a-z]+)$">
         </div>
         <div>
           <label for="Job Number">Job Number</label>
           <input type="text" id="job-number" class="u-full-width">
         </div>
         <div>
-          <input type="submit" value="Assign" class="u-full-width">
+          <input type="submit" value="Assign" class="u-full-width button-primary">
         </div>
       </form>
 
       <h3>Currently Active Jobs</h3>
       <!-- SOME ISSUE WITH THE CREATION OF TR ELEMENTS  -->
-      <!-- <div>
+      <div>
         <span>Job Number</span>
         <input type="number" id = "myInput" onkeyup="Filter()" placeholder="Search for Job Number">
-      </div> -->
+      </div>
 
       <table id="filterTable" class = "u-full-width">
         <thead> <!-- table head -->
