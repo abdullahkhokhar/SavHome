@@ -83,3 +83,15 @@
   border-radius: 10px;
   padding: 5px;
 }
+
+.Tele-EL{
+  font-weight: bold;
+  background-image: linear-gradient(to top, #a7a6cb 0%, #8989ba 52%, #8989ba 100%);
+  border-radius: 8px;
+}
+
+.Tele-Title{
+  background-color:#a7a6cb;
+  border-radius: 10px;
+  padding: 5px;
+}
