@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>View Jobs for V1504</title>
+    <title>View Jobs for Enclosures!</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css"/>
     <link rel="stylesheet" href="../../assets/style.css" type="text/css"/>
   </head>
@@ -17,7 +17,7 @@
     <br><br><br><br>
 
     <div class="container">
-      <h2><span class = "VTitle">V1504</span> Currently Active Jobs</h2>
+      <h2><span class = "ETitle">Enclosures</span> Currently Active Jobs</h2>
       <div>
         <span>Job Number</span>
         <input type="number" id = "myInput" onkeyup="Filter()" placeholder="Search for Job Number">
@@ -25,9 +25,8 @@
       <table class = "u-full-width" id="filterTable">
         <thead> <!-- table head -->
           <tr class="u-full-width"> <!-- table row -->
-            <th class = 'VEL' id = "jobTH">Job Number</th>
-            <th class = 'VEL'>Employee Name</th>
-            <!-- <th>Status</th> -->
+            <th class = 'EEL' id = "jobTH">Job Number</th>
+            <th class = 'EEL'>Employee Name</th>
           </tr>
         </thead>
         <tbody id = "job-list">
@@ -56,7 +55,7 @@
       firebase.initializeApp(firebaseConfig);
     </script>
 
-    <script src="v1504.js"></script>
+    <script src="encl.js"></script>
     <script>
     window.onload = readFromDB();
     </script>
