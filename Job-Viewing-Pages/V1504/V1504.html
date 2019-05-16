@@ -17,12 +17,16 @@
     <br><br><br><br>
 
     <div class="container">
-      <h2>V1504 Currently Active Jobs</h2>
-      <table class = "u-full-width">
+      <h2><span class = "VTitle">V1504</span> Currently Active Jobs</h2>
+      <div>
+        <span>Job Number</span>
+        <input type="number" id = "myInput" onkeyup="Filter()" placeholder="Search for Job Number">
+      </div>
+      <table class = "u-full-width" id="filterTable">
         <thead> <!-- table head -->
           <tr class="u-full-width"> <!-- table row -->
-            <th>Job Number</th>
-            <th>Employee Name</th>
+            <th class = 'thEL' id = "jobTH">Job Number</th>
+            <th class = 'thEL'>Employee Name</th>
             <!-- <th>Status</th> -->
           </tr>
         </thead>

@@ -16,8 +16,7 @@ function PageUp() {
     window.scrollTo(0, 0);
     scrolldelay = setInterval('pageScroll()',100);
 }
-
-scrolldelay = setInterval('pageScroll()',200); // scrolls every 100 milliseconds
+scrolldelay = setInterval('pageScroll()',200); // scrolls every 200 milliseconds
 
 function readFromDB(){
   // you want to call this everytime the page is reloaded
@@ -43,9 +42,8 @@ function readFromDB(){
             // Now each time we want to create a new table row element and load the items
             const row = document.createElement('tr');
             row.innerHTML = `
-            <td>${jobNumArr[i]}</td>
-            <td>${name}</td>
-            <!-- <td><a href ="#">&#9989<a></td> -->
+            <td class ="tdEl">${jobNumArr[i]}</td>
+            <td class ="tdEl">${name}</td>
             `;
             list.appendChild(row);
           }
@@ -54,4 +52,25 @@ function readFromDB(){
       })
     }
   });
+}
+
+function Filter(){
+  var input  = document.getElementById("myInput");
+  var filter = input.value.toUpperCase();
+  var table = document.getElementById("filterTable");
+  var tr = table.getElementsByTagName("tr");
+  var td, textValue;
+
+  // loop through tr and hide ones which do not match query
+  for(var i = 0; i < tr.length; i++){
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
 }
