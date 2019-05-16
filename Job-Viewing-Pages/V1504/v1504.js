@@ -45,7 +45,7 @@ function readFromDB(){
             row.innerHTML = `
             <td>${jobNumArr[i]}</td>
             <td>${name}</td>
-            <td><a href ="#">&#9989<a></td>
+            <!-- <td><a href ="#">&#9989<a></td> -->
             `;
             list.appendChild(row);
           }
