@@ -95,3 +95,15 @@
   border-radius: 10px;
   padding: 5px;
 }
+
+.Multi-EL{
+  font-weight: bold;
+  background-image: linear-gradient(to top, #c79081 0%, #dfa579 100%);
+  border-radius: 8px;
+}
+
+.Multi-Title{
+  background-color:#c79081;
+  border-radius: 10px;
+  padding: 5px;
+}
