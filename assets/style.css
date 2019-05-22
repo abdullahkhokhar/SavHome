@@ -118,3 +118,7 @@ background-image: linear-gradient(to top, #e6b980 0%, #eacda3 100%);  border-rad
   border-radius: 10px;
   padding: 5px;
 }
+
+.card-box:hover{
+  background-color: green;
+}
