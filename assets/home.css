@@ -19,7 +19,12 @@ html * {
 }
 
 .title-box{
-  background-image: linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%);
+  background-color: #38bd30;
+  background-image: linear-gradient(45deg, #38bd30 9%, #d2ef93 100%);
+
+
+
+
 }
 
 
